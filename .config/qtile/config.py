@@ -20,7 +20,7 @@ terminal = guess_terminal()
 
 @hook.subscribe.startup_once
 def autostart_once():
-    subprocess.run('/home/developer1/.config/qtile/autostart.sh')
+    subprocess.run('/home/adam/.config/qtile/autostart.sh')
     
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -317,7 +317,7 @@ def init_widgets_list():
             background=colors[0]
         ),
         widget.TextBox(
-            text=" 🖬",
+            text="󰍛",
             foreground=colors[3],
             background=colors[0],
             padding=0,
@@ -329,7 +329,7 @@ def init_widgets_list():
             padding=5
         ),
         widget.Net(
-            interface="wlp9s0",
+            interface="wlp2s0",
             format='{down} ↓↑ {up}',
             foreground=colors[5],
             background=colors[0],

@@ -8,9 +8,21 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/opt/:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 export PATH="$HOME/Applications:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+
+# export GOPATH=$HOME/xxxxx
+# export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:$(go env GOPATH)/bin
+
+
+
+
+# export NABU_TENANT_FOLDER="$ALAYACARE_HOME/nabu/web/api/v1/tenant"
+# export VISUAL=lvim
+# export EDITOR=lvim
+
 
 # Aliases
 alias zsource="source ~/.zshrc"
@@ -89,10 +101,13 @@ export NVM_DIR="$HOME/.nvm"
 # bindkey -s ^a "nvims\n"
 export EDITOR='/usr/bin/nvim'
 
-nvm use 18.15.0
+# nvm use 20.10.0
 
 eval "$(tmuxifier init -)"
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 eval "$(starship init zsh)"
-
+eval "$(~/.rbenv/bin/rbenv init - zsh)"
+# eval "$(rbenv init -)"
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

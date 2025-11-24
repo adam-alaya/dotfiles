@@ -1,0 +1,96 @@
+[
+  // NORMAL + VISUAL MODE
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      // === SEARCH & NAVIGATION ===
+      "space f g": "pane::DeploySearch", // leader fg (Find in Path)
+      "space f f": "file_finder::Toggle", // leader ff (GotoFile)
+      "space u": "editor::FindAllReferences", // FindUsages
+      "space a": "outline::Toggle",
+
+      // === COMMENTING ===
+      "space /": "editor::ToggleComments",
+
+      // === TABS / BUFFERS ===
+      "tab": "pane::ActivateNextItem",
+      "shift-tab": "pane::ActivatePreviousItem",
+      "space q": "pane::CloseActiveItem",
+
+      // === VISUAL MODE LINE MOVEMENT ===
+      "J": "editor::MoveLineDown",
+      "K": "editor::MoveLineUp",
+
+      // === REDO ===
+      "ctrl-r": "editor::Redo"
+    }
+  },
+
+  // NORMAL MODE ONLY
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      // === BASIC GOTO / LSP ===
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDefinitionSplit",
+      "g i": "editor::GoToImplementation",
+      "g I": "editor::GoToImplementationSplit",
+      "g t": "editor::GoToTypeDefinition",
+      "g T": "editor::GoToTypeDefinitionSplit",
+      "g r": "editor::FindAllReferences",
+
+      // === DIAGNOSTICS ===
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic",
+      "] e": "editor::GoToDiagnostic",
+      "[ e": "editor::GoToPreviousDiagnostic",
+
+      // === SYMBOL SEARCH ===
+      "s s": "outline::Toggle",
+      "s S": "project_symbols::Toggle",
+
+      // === BUFFERS ===
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      "shift-q": "pane::CloseActiveItem",
+      "ctrl-q": "pane::CloseActiveItem",
+      "space b d": "pane::CloseActiveItem",
+      "space b o": "pane::CloseOtherItems",
+
+      // === FILES ===
+      "ctrl-s": "workspace::Save",
+      "space space": "file_finder::Toggle",
+      "space e": "pane::RevealInProjectPanel",
+
+      // === ZED-ONLY IMPROVEMENTS ===
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+
+      // === MARKS ===
+      // "space m h": "editor::SetMark",
+      // "space m m": "vim::ToggleMarksView"
+      // "space m h": { "type": "keys", "keys": "m a" },
+      // "space h": { "type": "keys", "keys": "' a" }
+
+      // === COMMENTING ===
+      //
+      // === UNCONVERTABLE IDEA-VIM MAPPINGS (documented with comments) ===
+      //
+      // "space a":   FileStructurePopup – no equivalent
+      // "gb":        Back – no equivalent
+      // "gf":        Forward – no equivalent
+      // Testing: ToggleLineBreakpoint, ContextRun, ContextDebug, Run – no direct Zed equivalents
+      // Bookmarks: JetBrains bookmark system unsupported
+      // Blackhole registers have no equivalent (Zed has no unnamed register control)
+      // Copilot actions have no Zed-equivalent unless using GitHub Copilot extension (optional)
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "k j": "vim::NormalBefore"
+    }
+  }
+]

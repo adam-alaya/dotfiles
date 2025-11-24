@@ -168,8 +168,14 @@ export EDITOR='/usr/bin/nvim'
 export SECOND_BRAIN="$HOME/sb"
 
 # nvm use 18.15.0
-nvm use 20.5.0
+# nvm use 20.5.0
+nvm use 22.21.0
 ~/dotfiles/scripts/intro
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+eval "$(pyenv virtualenv-init -)"
 
 eval "$(tmuxifier init -)"
 
@@ -199,4 +205,3 @@ _fzf_compgen_dir() {
 }
 
 source ~/.fzf-git.sh/fzf-git.sh
-

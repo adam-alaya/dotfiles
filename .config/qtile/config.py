@@ -26,6 +26,24 @@ def autostart_once():
     subprocess.run("/home/developer1/.config/qtile/autostart.sh")
 
 
+force_tile_rules = [
+    Match(wm_class="AWS VPN Client"),
+    Match(wm_class="V AWS VPN Client"),
+    Match(wm_class="jetbrains-pycharm"),
+]
+
+
+@hook.subscribe.client_new
+def apply_force_tile(window):
+    for rule in force_tile_rules:
+        if rule.compare(window):
+            window.hints["min_width"] = 0
+            window.hints["min_height"] = 0
+            window.hints["max_width"] = 0
+            window.hints["max_height"] = 0
+            window.enable_floating(False)
+
+
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
@@ -59,6 +77,7 @@ keys = [
     Key([mod, "control"], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle Floating"),
     Key([mod], "s", lazy.spawn("flameshot gui", shell=True), desc="Take a screenshot"),
+    Key([mod], "b", lazy.spawn(os.path.expanduser('~/dotfiles/scripts/rofi-menu.sh'), shell=True), desc="Rofi script launcher"),
     # Key([mod], "i", lazy.spawn(os.path.expanduser('~/.config/qtile/scripts/pyswitcher.sh'), shell=True), desc="Rofi script for pycharm"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -336,22 +355,11 @@ def init_widgets_list():
             fontsize=16,
         ),
         widget.ThermalSensor(foreground=colors[2], background=colors[0], padding=5),
-        widget.TextBox(
-            text=" ⟳",
+        widget.Battery(
             padding=2,
             foreground=colors[4],
             background=colors[0],
-            fontsize=19,
-        ),
-        widget.TextBox(
-            text="Updates", padding=5, foreground=colors[4], background=colors[0]
-        ),
-        widget.TextBox(
-            text=" 🖬",
-            foreground=colors[3],
-            background=colors[0],
-            padding=0,
-            fontsize=16,
+            fontsize=12,
         ),
         widget.Memory(background=colors[0], foreground=colors[3], padding=5),
         widget.Net(

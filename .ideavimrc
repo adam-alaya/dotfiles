@@ -131,5 +131,11 @@ nnoremap <leader>o :action ToggleDistractionFreeMode<CR>
 nnoremap <leader>f :action ReformatCode<CR>
 nnoremap <c-k> :action ShowErrorDescription<CR>
 
+" Better window navigation
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
 " Fix paste in visual mode breaking in v2.5.1
 " vnoremap p ""p
